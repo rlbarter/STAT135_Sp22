@@ -1,6 +1,7 @@
 # Course information for UC Berkeley STAT 135 Spring 2022
 
 **Instructor** Rebecca Barter
+
 **Class time** Tu/Th 11-12:30
 
 ## Course schedule

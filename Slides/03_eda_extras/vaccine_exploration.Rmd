@@ -1,0 +1,92 @@
+---
+title: "How does vaccine distribution relate to GDP?"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+The data in this file comes from ["Our World in Data"](https://ourworldindata.org/grapher/covid-vaccinations-vs-gdp-per-capita), and is updated daily.  
+
+
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+covid_vaccines_orig <- read_csv("covid-vaccinations-vs-gdp-per-capita.csv")
+
+covid_vaccines <- covid_vaccines_orig %>%
+  select(country = Entity,
+         date = Day,
+         vaccines_per_hundred = total_vaccinations_per_hundred,
+         gdp_per_capita = `GDP per capita, PPP (constant 2011 international $)`,
+         continent = Continent) 
+
+```
+
+
+```{r echo = FALSE, eval = FALSE}
+#NOT RUN
+# What is Year and Year_1?
+head(covid_vaccines)
+
+# dimension of data
+dim(covid_vaccines)
+
+# Explore missing values 
+covid_vaccines %>% 
+  map_dbl(~sum(is.na(.)))
+# say something about the countries with missing values
+
+# note that there are varying numbers of rows for each country appearing in the data
+covid_vaccines %>%
+  count(country)
+
+# the final date is different for each country too
+covid_vaccines %>%
+  group_by(country) %>%
+  summarize(final_date = max(date))
+
+```
+
+Oh no. This data is a little bit messy! There are inconsistent numbers of rows for each country, there are missing values, and each country's final date is different.
+
+## Examining the relationship between vaccines and GDP
+
+Let's create some plots just for the highest reported vaccine dose count for each country.
+
+```{r echo = FALSE}
+# There are a few ways that we could get the "final" "vaccination per hundreds" number for each country.
+# 1. We could filter to the last date for each country
+# 2. We could filter to the highest vaccines_per_hundred number for each country
+# let's do the latter:
+total_covid_vaccines <- covid_vaccines %>%
+  group_by(country) %>%
+  filter(vaccines_per_hundred == max(vaccines_per_hundred)) %>%
+  ungroup()
+```
+
+Here are some scatterplots. I encourage you to play with this yourself and make some other plots that might be interesting (e.g., the vaccines over time for different countries!)
+
+```{r echo = FALSE, message=FALSE, warning=FALSE, fig.align="center", out.height = "70%", out.width = "70%"}
+
+#What about a log scale? How do  you interpret a log scale version of this plot?
+total_covid_vaccines %>%
+  ggplot() +
+  geom_point(aes(x = gdp_per_capita / 1000, 
+                 y = vaccines_per_hundred, color = continent), 
+             alpha = 0.9) +
+  # Annotate a few countries
+  geom_text(aes(x = gdp_per_capita / 1000, 
+                y = vaccines_per_hundred, label = country), 
+            check_overlap = TRUE, 
+            col = "grey50",
+            hjust = 0, 
+            alpha = 0.5) +
+  scale_x_log10("GDP per capita ($1000)") +
+  scale_y_continuous("Vaccines per hundred people") +
+  scale_color_brewer(palette = 4, type = "qual") +
+  # Annotate a few countries
+  theme_classic()
+```
+
+
