@@ -20,7 +20,7 @@ Tuesday Jan 27:
 
 ### Week 3
 
-Tuesday Feb 1: _**Homework 1 due**_, **Homework 2 released**, **Data lab 1 released**
+Tuesday Feb 1: _**Homework 1 due**_; **Homework 2 released**; **Data lab 1 released**
 
 Thursday Feb 3:
 
@@ -34,7 +34,7 @@ Thursday Feb 10:
 
 Tuesday Feb 15: _**Data lab 1 due**_
 
-Thursday Feb 17: **Data lab 2 released**, **Homework 3 released**
+Thursday Feb 17: **Data lab 2 released**; **Homework 3 released**
 
 ## Week 6
 
@@ -52,7 +52,7 @@ Thursday Mar 3: _**Data lab 2 due**_
 
 Tuesday Mar 8:
 
-Thursday Mar 10: _**Midterm**_, **Homework 4 released**
+Thursday Mar 10: _**Midterm**_; **Homework 4 released**
 
 ## Week 9
 
@@ -74,13 +74,13 @@ Thursday Mar 31:
 
 ## Week 11
 
-Tuesday Apr 5: _**Homework 5 due**_, **Homework 6 released**
+Tuesday Apr 5: _**Homework 5 due**_; **Homework 6 released**
 
 Thursday Apr 7:
 
 ## Week 12
 
-Tuesday Apr 12: _**Homework 6 due**_, **Homework 7 released**, **Data lab 3 released**
+Tuesday Apr 12: _**Homework 6 due**_; **Homework 7 released**; **Data lab 3 released**
 
 Thursday Apr 14:
 
